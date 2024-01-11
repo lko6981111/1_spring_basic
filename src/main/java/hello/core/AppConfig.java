@@ -17,16 +17,20 @@ public class AppConfig {
 
     @Bean
     public MemberService memberService(){
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
-    private static MemberRepository memberRepository() {
+    public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.orderService");
         return new MemoryMemberRepository();
     }
+    //static 메소드가 되면 @Bean이 인식 안함 -> 그러면 싱글톤 보장이 안된다!
 
     @Bean
     public OrderService orderService(){
+        System.out.println("call AppConfig.memberService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
